@@ -1,14 +1,8 @@
-# Run Log backend: Garmin import
+# Run Log
 
-Logs in to your Garmin Connect account, then copies your runs, heart rate
-zone times and route lines into a local database (`runs.db`).
+A personal running dashboard for your Garmin data. It copies your runs from Garmin Connect into a local database, keeps it up to date automatically, and shows it in a web page on your own computer: weekly distance and pace, time in heart rate zones, easy/tempo/threshold/hard run types, personal bests, and same-route comparisons on a map. You can pick any date range. Everything stays on your machine.
 
-This uses the unofficial `garminconnect` library. It can break when Garmin
-changes its login, and it sits outside Garmin's official terms. Your password
-is never saved. Garmin's login tokens are saved in `~/.garminconnect`, so treat
-that folder like a password and never share or commit it.
-
-Needs Python 3.12 or later.
+Built with Python (Flask and SQLite) and a single-page HTML dashboard, with no account or subscription beyond your Garmin login.
 
 ## Screenshots
 
@@ -23,6 +17,18 @@ Needs Python 3.12 or later.
 ![Easy, tempo, threshold and hard runs](screenshots/5-run-types.png)
 
 ![Compare the same route, tempo runs only](screenshots/6-route-comparison.png)
+
+# Run Log backend: Garmin import
+
+Logs in to your Garmin Connect account, then copies your runs, heart rate
+zone times and route lines into a local database (`runs.db`).
+
+This uses the unofficial `garminconnect` library. It can break when Garmin
+changes its login, and it sits outside Garmin's official terms. Your password
+is never saved. Garmin's login tokens are saved in `~/.garminconnect`, so treat
+that folder like a password and never share or commit it.
+
+Needs Python 3.12 or later.
 
 ## Set up
 
