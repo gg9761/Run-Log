@@ -2,9 +2,23 @@
 
 A personal running dashboard for your Garmin data. It copies your runs from Garmin Connect into a local database, keeps it up to date automatically, and shows it in a web page on your own computer: weekly distance and pace, time in heart rate zones, easy/tempo/threshold/hard run types, personal bests, and same-route comparisons on a map. You can pick any date range. Everything stays on your machine.
 
-Built with Python (Flask and SQLite) and a single-page HTML dashboard, with no account or subscription beyond your Garmin login.
+Built with Python (Flask and SQLite) and a single-page HTML dashboard, with no account or subscription beyond your Garmin login. [Try the live demo](https://gg9761.github.io/Run-Log/) with sample data.
+
+## Garmin import (backend)
+
+Logs in to your Garmin Connect account, then copies your runs, heart rate
+zone times and route lines into a local database (`runs.db`).
+
+This uses the unofficial `garminconnect` library. It can break when Garmin
+changes its login, and it sits outside Garmin's official terms. Your password
+is never saved. Garmin's login tokens are saved in `~/.garminconnect`, so treat
+that folder like a password and never share or commit it.
+
+Needs Python 3.12 or later.
 
 ## Screenshots
+
+These use made-up sample runs. You can try the same thing in the [live demo](https://gg9761.github.io/Run-Log/).
 
 ![Overview: this week, distance per week, last 4 weeks](screenshots/1-overview.png)
 
@@ -17,18 +31,6 @@ Built with Python (Flask and SQLite) and a single-page HTML dashboard, with no a
 ![Easy, tempo, threshold and hard runs](screenshots/5-run-types.png)
 
 ![Compare the same route, tempo runs only](screenshots/6-route-comparison.png)
-
-# Run Log backend: Garmin import
-
-Logs in to your Garmin Connect account, then copies your runs, heart rate
-zone times and route lines into a local database (`runs.db`).
-
-This uses the unofficial `garminconnect` library. It can break when Garmin
-changes its login, and it sits outside Garmin's official terms. Your password
-is never saved. Garmin's login tokens are saved in `~/.garminconnect`, so treat
-that folder like a password and never share or commit it.
-
-Needs Python 3.12 or later.
 
 ## Set up
 
@@ -46,7 +48,7 @@ pip install -r requirements.txt
 2. **Check the data format:** `python garmin_sync.py inspect`
    Prints the raw data for your latest run. If you see `zoneNumber` and
    `secsInZone` in the HR ZONES section, zones will import correctly. If the
-   names differ, paste the output to Claude and we'll adjust.
+   names differ, the import code in `garmin_sync.py` will need adjusting to match.
 3. **Import your runs:** `python garmin_sync.py sync`
    Fetches the last 365 days. For a longer history use
    `python garmin_sync.py sync --since 2022-01-01`
@@ -168,6 +170,6 @@ times are approximate. Elevation from GPX files is rough. FIT files are more acc
 
 ## Sharing this project
 
-- **Live demo:** the `docs/` folder is a version of the dashboard with made-up sample runs. In your GitHub repo, go to Settings → Pages, choose "Deploy from a branch", branch `main`, folder `/docs`. After a minute the demo is at `https://YOUR-USERNAME.github.io/REPO-NAME/`.
+- **Live demo:** the `docs/` folder is a version of the dashboard with made-up sample runs. In your GitHub repo, go to Settings → Pages, choose "Deploy from a branch", branch `main`, folder `/docs`. After a minute the demo is at `https://gg9761.github.io/Run-Log/`.
 - **Running it with their own data:** a friend downloads the repo, runs `pip install -r requirements.txt`, `python garmin_sync.py login`, `python garmin_sync.py sync`, then `python server.py`. It uses their own Garmin account and keeps everything on their computer.
 - **Never commit personal data.** `.gitignore` already excludes `runs.db`, `zones.json`, `exports/` and the Garmin login tokens. The real dashboard needs the local server, so it can't be hosted on GitHub Pages with live data.
