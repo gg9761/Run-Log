@@ -12,8 +12,6 @@ Needs Python 3.12 or later.
 
 ## Screenshots
 
-You can try the same thing in the [live demo](https://gg9761.github.io/run-log/).
-
 ![Overview: this week, distance per week, last 4 weeks](screenshots/1-overview.png)
 
 ![Tap a week for its stats, zone split and runs](screenshots/2-week-detail.png)
