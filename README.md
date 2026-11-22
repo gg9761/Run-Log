@@ -10,6 +10,22 @@ that folder like a password and never share or commit it.
 
 Needs Python 3.12 or later.
 
+## Screenshots
+
+These use made-up sample runs. You can try the same thing in the [live demo](https://gg9761.github.io/run-log/).
+
+![Overview: this week, distance per week, last 4 weeks](screenshots/1-overview.png)
+
+![Tap a week for its stats, zone split and runs](screenshots/2-week-detail.png)
+
+![Pick your own dates](screenshots/3-custom-dates.png)
+
+![Time in heart rate zones](screenshots/4-heart-rate-zones.png)
+
+![Easy, tempo, threshold and hard runs](screenshots/5-run-types.png)
+
+![Compare the same route, tempo runs only](screenshots/6-route-comparison.png)
+
 ## Set up
 
 ```
@@ -25,7 +41,8 @@ pip install -r requirements.txt
    enter the code when asked.
 2. **Check the data format:** `python garmin_sync.py inspect`
    Prints the raw data for your latest run. If you see `zoneNumber` and
-   `secsInZone` in the HR ZONES section, zones will import correctly. 
+   `secsInZone` in the HR ZONES section, zones will import correctly. If the
+   names differ, paste the output to Claude and we'll adjust.
 3. **Import your runs:** `python garmin_sync.py sync`
    Fetches the last 365 days. For a longer history use
    `python garmin_sync.py sync --since 2022-01-01`
@@ -144,3 +161,9 @@ times are approximate. Elevation from GPX files is rough. FIT files are more acc
   Update the library with `pip install --upgrade garminconnect curl_cffi`.
 - **Some runs say "skipped"**: they'll be retried on the next `sync`.
 - **".fit" files fail**: make sure `fitdecode` is installed (`pip install -r requirements.txt`).
+
+## Sharing this project
+
+- **Live demo:** the `docs/` folder is a version of the dashboard with made-up sample runs. In your GitHub repo, go to Settings → Pages, choose "Deploy from a branch", branch `main`, folder `/docs`. After a minute the demo is at `https://YOUR-USERNAME.github.io/REPO-NAME/`.
+- **Running it with their own data:** a friend downloads the repo, runs `pip install -r requirements.txt`, `python garmin_sync.py login`, `python garmin_sync.py sync`, then `python server.py`. It uses their own Garmin account and keeps everything on their computer.
+- **Never commit personal data.** `.gitignore` already excludes `runs.db`, `zones.json`, `exports/` and the Garmin login tokens. The real dashboard needs the local server, so it can't be hosted on GitHub Pages with live data.
