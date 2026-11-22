@@ -1,0 +1,8 @@
+# Personal data: never commit these
+runs.db
+*.db
+zones.json
+exports/
+.garminconnect/
+__pycache__/
+*.pyc

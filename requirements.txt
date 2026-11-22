@@ -1,0 +1,4 @@
+garminconnect
+curl_cffi
+fitdecode
+flask>=3.0
