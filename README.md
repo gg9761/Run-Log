@@ -12,7 +12,7 @@ Needs Python 3.12 or later.
 
 ## Screenshots
 
-These use made-up sample runs. You can try the same thing in the [live demo](https://gg9761.github.io/run-log/).
+You can try the same thing in the [live demo](https://gg9761.github.io/run-log/).
 
 ![Overview: this week, distance per week, last 4 weeks](screenshots/1-overview.png)
 
