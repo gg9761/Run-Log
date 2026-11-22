@@ -25,8 +25,7 @@ pip install -r requirements.txt
    enter the code when asked.
 2. **Check the data format:** `python garmin_sync.py inspect`
    Prints the raw data for your latest run. If you see `zoneNumber` and
-   `secsInZone` in the HR ZONES section, zones will import correctly. If the
-   names differ, paste the output to Claude and we'll adjust.
+   `secsInZone` in the HR ZONES section, zones will import correctly. 
 3. **Import your runs:** `python garmin_sync.py sync`
    Fetches the last 365 days. For a longer history use
    `python garmin_sync.py sync --since 2022-01-01`
